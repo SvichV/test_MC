@@ -1,27 +1,118 @@
-import {useState} from 'react';
-import {HERO_LIST} from './hero-list.const'
+import React, { useCallback, useEffect, useState } from 'react';
+import { HERO_LIST } from './hero-list.const'
+import './hero-selection.css'
+
+enum EventKeys {
+    Enter = 'Enter',
+    ArrowLeft = 'ArrowLeft',
+    ArrowUp = 'ArrowUp',
+    ArrowRight = 'ArrowRight',
+    ArrowDown = 'ArrowDown'
+}
+
+const { id: lastElementId } = HERO_LIST[HERO_LIST.length - 1];
+const { id: firsElementId } = HERO_LIST[0];
 
 export const HeroSelection = () => {
-    const [firstPlayerHero, setFirstPlayerHero] = useState<string>('')
-    const [secondPlayerHero, setSecondPlayerHero] = useState<string>('')
+    const [ firstPlayerHero, setFirstPlayerHero ] = useState<string>('');
+    const [ secondPlayerHero, setSecondPlayerHero ] = useState<string>('');
+    const [ focusedElementId, setFocusedElementId ] = useState<number>(1);
 
-    const selectHero = (heroName: string) => {
-        if (!firstPlayerHero) {
-            setFirstPlayerHero(heroName)
-        } else if (!secondPlayerHero) {
-            setSecondPlayerHero(heroName)
+    const selectHero = (event: React.KeyboardEvent, heroName: string) => {
+        if (event.key === EventKeys.Enter) {
+            if (!firstPlayerHero) {
+                setFirstPlayerHero(heroName);
+                setFocusedElementId(5);
+            } else if (!secondPlayerHero) {
+                setSecondPlayerHero(heroName);
+            }
         }
     }
 
+    useEffect(() => {
+        const elem = document.getElementById(String(focusedElementId));
+        elem?.focus();
+    }, [ focusedElementId ]);
+
+    // Navigation through the hero grid
+    const arrowKeyEventHandler = useCallback((event: KeyboardEvent) => {
+        switch (event.key) {
+            case EventKeys.ArrowRight: {
+                if (focusedElementId !== lastElementId) {
+                    setFocusedElementId(focusedElementId + 1);
+                } else {
+                    setFocusedElementId(firsElementId);
+                }
+                break;
+            }
+
+            case EventKeys.ArrowLeft: {
+                if (focusedElementId !== firsElementId) {
+                    setFocusedElementId(focusedElementId - 1);
+                } else {
+                    setFocusedElementId(lastElementId);
+                }
+                break;
+            }
+
+            case EventKeys.ArrowDown: {
+                const averageNextFocusedElementId = focusedElementId + 5; // as we know that 5 elements in row
+
+                if (averageNextFocusedElementId > lastElementId) {
+                    const nextFocusedElementId = averageNextFocusedElementId - lastElementId;
+                    setFocusedElementId(nextFocusedElementId);
+                } else {
+                    setFocusedElementId(averageNextFocusedElementId);
+                }
+
+                break;
+            }
+
+            case EventKeys.ArrowUp: {
+                const averageNextFocusedElementId = focusedElementId - 5; // as we know that 5 elements in row
+
+                if (averageNextFocusedElementId < firsElementId) {
+                    const nextFocusedElementId = lastElementId - (5 - focusedElementId);
+
+                    setFocusedElementId(nextFocusedElementId);
+                } else {
+                    setFocusedElementId(averageNextFocusedElementId);
+                }
+
+                break;
+            }
+        }
+    }, [ focusedElementId ]);
+
+    useEffect(() => {
+        // set listener
+        document.addEventListener('keydown', arrowKeyEventHandler);
+
+        // remove listener when component destroyed
+        return () => {
+            document.removeEventListener('keydown', arrowKeyEventHandler);
+        }
+    }, [ arrowKeyEventHandler ]);
+
     return (
-        <div>
-            <div className='title'>{!firstPlayerHero ? '1st player' : '2nd player'} select your hero</div>
-            <div className='sub-title'>
-                <div>1st player: {firstPlayerHero}</div>
-                <div>2nd player: {secondPlayerHero}</div>
+        <div className='hero-selection'>
+            <div className='hero-selection-header'>
+                <div className='title'>{!firstPlayerHero ? '1st player' : '2nd player'} select your hero</div>
+                <div className='sub-title'>
+                    <div>1st player: {firstPlayerHero}</div>
+                    <div>2nd player: {secondPlayerHero}</div>
+                </div>
             </div>
 
-            <div className='hero-grid'></div>
+            <div className='hero-grid'>
+                {HERO_LIST.map((hero) => (
+                    <div id={String(hero.id)} tabIndex={-1} key={hero.id}
+                         onKeyDown={(e) => selectHero(e, hero.name)}
+                         className={`hero ${firstPlayerHero ? 'p2' : 'p1'}`}>
+                        <img alt={hero.name} className='hero-logo' src={hero.logo}/>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

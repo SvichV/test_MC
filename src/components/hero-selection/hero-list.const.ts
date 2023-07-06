@@ -2,76 +2,76 @@ export const HERO_LIST = [
     {
         id: 1,
         name: 'Cyrax',
-        logo: '/cyrax.jpeg'
+        logo: '/hero-logos/cyrax.jpeg'
     },
     {
         id: 2,
         name: 'Jax',
-        logo: '/jax.jpeg'
+        logo: '/hero-logos/jax.jpeg'
     },
     {
         id: 3,
         name: 'Kabal',
-        logo: '/kabal.jpeg'
+        logo: '/hero-logos/kabal.jpeg'
     },
     {
         id: 4,
         name: 'Kano',
-        logo: '/kano.jpeg'
+        logo: '/hero-logos/kano.jpeg'
     },
     {
         id: 5,
         name: 'Kung Lao',
-        logo: '/kung-lao.jpeg'
+        logo: '/hero-logos/kung-lao.jpeg'
     },
     {
         id: 6,
         name: 'Liu Kang',
-        logo: '/liu-kang.jpeg'
+        logo: '/hero-logos/liu-kang.jpeg'
     },
     {
         id: 7,
         name: 'Nightwolf',
-        logo: '/nightwolf.jpeg'
+        logo: '/hero-logos/nightwolf.jpeg'
     },
     {
         id: 8,
         name: 'Sektor',
-        logo: '/sector.jpeg'
+        logo: '/hero-logos/sektor.jpeg'
     },
     {
         id: 9,
         name: 'Shang Tsung',
-        logo: '/shang-tsung.jpeg'
+        logo: '/hero-logos/shang-tsung.jpeg'
     },
     {
         id: 10,
         name: 'Sheeva',
-        logo: '/sheeva.jpeg'
+        logo: '/hero-logos/sheeva.jpeg'
     },
     {
         id: 11,
         name: 'Sindel',
-        logo: '/sindel.jpeg'
+        logo: '/hero-logos/sindel.jpeg'
     },
     {
         id: 12,
         name: 'Smoke',
-        logo: '/smoke.jpeg'
+        logo: '/hero-logos/smoke.jpeg'
     },
     {
         id: 13,
         name: 'Sonya',
-        logo: '/sonya.jpeg'
+        logo: '/hero-logos/sonya.jpeg'
     },
     {
         id: 14,
         name: 'Stryker',
-        logo: '/stryker.jpeg'
+        logo: '/hero-logos/stryker.jpeg'
     },
     {
         id: 15,
         name: 'Sub-Zero',
-        logo: '/sub-zero.jpeg'
+        logo: '/hero-logos/sub-zero.jpeg'
     }
 ]
