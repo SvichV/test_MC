@@ -28,10 +28,6 @@
     margin-left: 15px;
 }
 
-.p2-character .hero-logo {
-    transform: scale(-1, 1);
-}
-
 .hero-name {
     font-weight: 600;
     margin-bottom: 5px;

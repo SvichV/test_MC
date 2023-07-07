@@ -49,6 +49,10 @@ export const PreFight = () => {
         } else {
             setFirstPlayerHeroInfo(firstPlayerHeroInfo);
             setSecondPlayerHeroInfo(secondPlayerHeroInfo);
+
+            setTimeout(() => {
+                navigate('/hero-selection');
+            }, 4000)
         }
     }, [ navigate ]);
 
