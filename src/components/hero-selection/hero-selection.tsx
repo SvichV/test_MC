@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HERO_LIST } from './hero-list.const'
-import './hero-selection.css'
+import { HERO_LIST } from './hero-list.const';
+import './hero-selection.css';
 
 enum EventKeys {
     Enter = 'Enter',
@@ -29,7 +29,7 @@ export const HeroSelection = () => {
                 setSecondPlayerHero(heroName);
             }
         }
-    }
+    };
 
     useEffect(() => {
         const elem = document.getElementById(String(focusedElementId));
@@ -39,10 +39,10 @@ export const HeroSelection = () => {
     useEffect(() => {
         if (firstPlayerHero && secondPlayerHero) {
             setTimeout(() => {
-                navigate(`/pre-fight?p1=${firstPlayerHero}&p2=${secondPlayerHero}`)
-            }, 2000)
+                navigate(`/pre-fight?p1=${firstPlayerHero}&p2=${secondPlayerHero}`);
+            }, 2000);
         }
-    }, [firstPlayerHero, secondPlayerHero])
+    }, [ firstPlayerHero, secondPlayerHero ]);
 
     // Navigation through the hero grid
     const arrowKeyEventHandler = useCallback((event: KeyboardEvent) => {
@@ -103,28 +103,28 @@ export const HeroSelection = () => {
         // remove listener when component destroyed
         return () => {
             document.removeEventListener('keydown', arrowKeyEventHandler);
-        }
+        };
     }, [ arrowKeyEventHandler ]);
 
     return (
-        <div className='hero-selection'>
-            <div className='hero-selection-header'>
-                <div className='title'>{!firstPlayerHero ? '1st player' : '2nd player'} select your hero</div>
-                <div className='sub-title'>
-                    <div>1st player: <span className='hero-name'>{firstPlayerHero}</span></div>
-                    <div>2nd player: <span className='hero-name'>{secondPlayerHero}</span></div>
+        <div className="hero-selection">
+            <div className="hero-selection-header">
+                <div className="title">{!firstPlayerHero ? '1st player' : '2nd player'} select your hero</div>
+                <div className="sub-title">
+                    <div>1st player: <span className="hero-name">{firstPlayerHero}</span></div>
+                    <div>2nd player: <span className="hero-name">{secondPlayerHero}</span></div>
                 </div>
             </div>
 
-            <div className='hero-grid'>
+            <div className="hero-grid">
                 {HERO_LIST.map((hero) => (
                     <div id={String(hero.id)} tabIndex={-1} key={hero.id}
                          onKeyDown={(e) => selectHero(e, hero.name)}
                          className={`hero ${!(firstPlayerHero && secondPlayerHero) ? firstPlayerHero ? 'p2' : 'p1' : ''}`}>
-                        <img alt={hero.name} className='hero-logo' src={hero.logo}/>
+                        <img alt={hero.name} className="hero-logo" src={hero.logo}/>
                     </div>
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};

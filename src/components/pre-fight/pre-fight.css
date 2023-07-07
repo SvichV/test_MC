@@ -1,0 +1,76 @@
+.pre-fight-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.versus {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.vs-text {
+    font-weight: 600;
+    font-size: 48px;
+}
+
+.hero-logo {
+    height: 124px;
+}
+
+.p1-character {
+    margin-right: 15px;
+}
+
+.p2-character {
+    margin-left: 15px;
+}
+
+.p2-character .hero-logo {
+    transform: scale(-1, 1);
+}
+
+.hero-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.versus-codes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.versus-code {
+    height: 60px;
+    width: 60px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.versus-code:not(:nth-last-child(1)) {
+    margin-right: 10px;
+}
+
+.bg-red {
+    background-color: red;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.bg-blue {
+    background-color: blue;
+    color: white;
+}
+
+.bg-white {
+    background-color: white;
+}
