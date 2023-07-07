@@ -31,19 +31,27 @@
 }
 
 .hero-selection-header {
-    width: 600px;
+    width: 520px;
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .hero-selection-header .title {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 600;
     text-align: center;
     margin-bottom: 10px;
 }
 
 .hero-selection-header .sub-title {
-    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
     display: flex;
+    flex: 1;
     justify-content: space-between;
+}
+
+.hero-selection-header .sub-title .hero-name {
+    font-weight: 600;
 }
